@@ -169,4 +169,5 @@ D:\setec year2\C# form setec\Learning\Learning\bin\Debug\net8.0\ru\Microsoft.Cod
 D:\setec year2\C# form setec\Learning\Learning\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 D:\setec year2\C# form setec\Learning\Learning\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 D:\setec year2\C# form setec\Learning\Learning\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\setec year2\C# form setec\Learning\Learning\obj\Debug\net8.0\Learning.sourcelink.json
 D:\setec year2\C# form setec\Learning\Learning\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

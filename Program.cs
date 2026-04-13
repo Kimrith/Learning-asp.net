@@ -1,26 +1,38 @@
 using Learning.Data;
+using Learning.Services;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Controllers
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var DbConnect = builder.Configuration.GetConnectionString("DefaultConnection");
+// Services
+builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<IAuthService, Auths>();
+builder.Services.AddScoped<ICatecoryService, CatecoryService>();
 
-builder.Services.AddDbContext<LearningDbContext>(Options =>
-    Options.UseSqlServer(DbConnect)
-);
+// Database
+var dbConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
+if (string.IsNullOrEmpty(dbConnection))
+{
+    throw new Exception("Missing database connection string");
+}
+
+builder.Services.AddDbContext<LearningDbContext>(options =>
+{
+    options.UseSqlServer(dbConnection);
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -28,9 +40,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

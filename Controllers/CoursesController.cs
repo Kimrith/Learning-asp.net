@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Learning.Controllers
 {
-    [Route("api/test")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CoursesController : ControllerBase
     {
