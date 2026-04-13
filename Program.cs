@@ -1,6 +1,6 @@
 using Learning.Data;
+using Learning.Repositories;
 using Learning.Services;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,10 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Services
-builder.Services.AddScoped<ICourseService, CourseService>();
-builder.Services.AddScoped<IAuthService, Auths>();
-builder.Services.AddScoped<ICatecoryService, CatecoryService>();
+// Services + Repository
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 // Database
 var dbConnection = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -32,7 +31,7 @@ builder.Services.AddDbContext<LearningDbContext>(options =>
 
 var app = builder.Build();
 
-// Middleware
+// Swagger
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -40,7 +39,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// CORS (optional)
+app.UseCors("AllowAll");
+
 app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();

@@ -3,11 +3,10 @@ using Learning.Models;
 
 namespace Learning.Services
 {
-        public interface IAuthService 
-        {
-            Task<IEnumerable<AuthsModel>> GetAuthsAsync();
-            Task<AuthsModel> CreateAuthAsync(AuthDto auth);
-            Task<AuthsModel?> UpdateAuthAsync(AuthsModel auth);
-            Task<bool> DeleteAuthAsync(int id);
-        }
+    public interface IAuthService
+    {
+        Task<IEnumerable<AuthUser>> GetAuthsAsync();
+        Task<AuthResponseDto> Register(RegisterDto dto);
+        Task<AuthResponseDto> Login(LoginDto dto);
+    }
 }

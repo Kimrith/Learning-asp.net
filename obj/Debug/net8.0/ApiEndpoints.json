@@ -1,263 +1,41 @@
 [
   {
-    "ContainingType": "Learning.Controllers.AuthsController",
-    "Method": "GetAuths",
-    "RelativePath": "api/Auths",
+    "ContainingType": "AuthController",
+    "Method": "GetUser",
+    "RelativePath": "api/Auth",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Learning.Models.AuthsModel, Learning, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "Learning.Controllers.AuthsController",
-    "Method": "PostAuth",
-    "RelativePath": "api/Auths",
+    "ContainingType": "AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "auth",
-        "Type": "Learning.DTOs.AuthDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Learning.Models.AuthsModel",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Learning.Controllers.AuthsController",
-    "Method": "UpdateAuth",
-    "RelativePath": "api/Auths/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "auth",
-        "Type": "Learning.Models.AuthsModel",
-        "IsRequired": true
-      },
-      {
-        "Name": "id",
-        "Type": "",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Learning.Models.AuthsModel",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Learning.Controllers.AuthsController",
-    "Method": "DeleteAuth",
-    "RelativePath": "api/Auths/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Learning.Models.AuthsModel",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Learning.Controllers.CatecoryController",
-    "Method": "GetCatecories",
-    "RelativePath": "api/Catecory",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Learning.Models.Catecory, Learning, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Learning.Controllers.CatecoryController",
-    "Method": "CreateCatecory",
-    "RelativePath": "api/Catecory",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "catecory",
-        "Type": "Learning.DTOs.CatecoryDto",
+        "Name": "dto",
+        "Type": "Learning.DTOs.LoginDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Learning.Controllers.CatecoryController",
-    "Method": "UpdateCatecory",
-    "RelativePath": "api/Catecory/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "catecory",
-        "Type": "Learning.Models.Catecory",
-        "IsRequired": true
-      },
-      {
-        "Name": "id",
-        "Type": "",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Learning.Controllers.CatecoryController",
-    "Method": "DeleteCatecory",
-    "RelativePath": "api/Catecory/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Learning.Controllers.CoursesController",
-    "Method": "GetCourses",
-    "RelativePath": "api/Courses",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Learning.Models.Course, Learning, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Learning.Controllers.CoursesController",
-    "Method": "PostCourse",
-    "RelativePath": "api/Courses",
+    "ContainingType": "AuthController",
+    "Method": "Register",
+    "RelativePath": "api/Auth/register",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "courseDto",
-        "Type": "Learning.DTOs.CourseDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Learning.Models.Course",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Learning.Controllers.CoursesController",
-    "Method": "UpdateCourse",
-    "RelativePath": "api/Courses",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "course",
-        "Type": "Learning.Models.Course",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Learning.Models.Course",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Learning.Controllers.CoursesController",
-    "Method": "DeleteCourse",
-    "RelativePath": "api/Courses/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "dto",
+        "Type": "Learning.DTOs.RegisterDto",
         "IsRequired": true
       }
     ],

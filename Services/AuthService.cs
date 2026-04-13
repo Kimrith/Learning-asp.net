@@ -1,52 +1,72 @@
-﻿using Learning.Data;
+﻿using System.Security.Cryptography;
+using System.Text;
 using Learning.DTOs;
 using Learning.Models;
-using Microsoft.EntityFrameworkCore;
+using Learning.Repositories;
+using Learning.Services;
 
-namespace Learning.Services
+public class AuthService : IAuthService
 {
-    public class Auths : IAuthService
+    private readonly IAuthRepository _repo;
+
+    public AuthService(IAuthRepository repo)
     {
-        private readonly LearningDbContext _context;
+        _repo = repo;
+    }
 
-        public Auths(LearningDbContext context)
-        {
-            _context = context;
-        }
+    public async Task<IEnumerable<AuthUser>> GetAuthsAsync()
+    {
+        return await _repo.GetAllAsync();
+    }
 
-        public async Task<IEnumerable<AuthsModel>> GetAuthsAsync()
-        {
-            return await _context.Auths.ToListAsync();
-        }
+    public async Task<AuthResponseDto> Register(RegisterDto dto)
+    {
+        var existing = await _repo.GetByUsername(dto.Username);
+        if (existing != null)
+            throw new Exception("User already exists");
 
-        public async Task<AuthsModel> CreateAuthAsync(AuthDto auth)
+        var user = new AuthUser
         {
-            var auths = new AuthsModel
-            {
-                Username = auth.Username,
-                Password = auth.Password,
-                Email = auth.Email,
-                Role = auth.Role
-            };
-            _context.Auths.Add(auths);
-            await _context.SaveChangesAsync();
-            return auths;
-        }
+            Username = dto.Username,
+            Email = dto.Email,
+            Role = "User",
+            PasswordHash = HashPassword(dto.Password)
+        };
 
-        public async Task<AuthsModel?> UpdateAuthAsync(AuthsModel auth)
-        {
-            _context.Auths.Update(auth);
-            await _context.SaveChangesAsync();
-            return auth;
-        }
+        await _repo.Add(user);
 
-        public async Task<bool> DeleteAuthAsync(int id)
+        return new AuthResponseDto
         {
-            var auth = await _context.Auths.FindAsync(id);
-            if (auth == null) return false;
-            _context.Auths.Remove(auth);
-            await _context.SaveChangesAsync();
-            return true;
-        }
+            Username = user.Username,
+            Email = user.Email,
+            Role = user.Role
+        };
+    }
+
+    public async Task<AuthResponseDto> Login(LoginDto dto)
+    {
+        var user = await _repo.GetByUsername(dto.Username);
+
+        if (user == null || !VerifyPassword(dto.Password, user.PasswordHash))
+            throw new Exception("Invalid login");
+
+        return new AuthResponseDto
+        {
+            Username = user.Username,
+            Email = user.Email,
+            Role = user.Role
+        };
+    }
+
+    private string HashPassword(string password)
+    {
+        using var sha = SHA256.Create();
+        var bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
+        return Convert.ToBase64String(bytes);
+    }
+
+    private bool VerifyPassword(string password, string hash)
+    {
+        return HashPassword(password) == hash;
     }
 }

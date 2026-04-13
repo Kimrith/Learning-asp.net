@@ -9,8 +9,6 @@ namespace Learning.Data
         {
         }
 
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<AuthsModel> Auths { get; set; }
-        public DbSet<Catecory> Catecories { get; set; }
+        public DbSet<AuthUser> Auths { get; set; }
     }
 }
