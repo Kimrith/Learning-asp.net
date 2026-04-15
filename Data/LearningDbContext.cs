@@ -1,4 +1,5 @@
-﻿using Learning.Models;
+﻿using Learning.DTOs;
+using Learning.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Learning.Data
@@ -10,5 +11,6 @@ namespace Learning.Data
         }
 
         public DbSet<AuthUser> Auths { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
